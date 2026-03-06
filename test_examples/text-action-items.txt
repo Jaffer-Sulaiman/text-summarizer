@@ -1,0 +1,17 @@
+Meeting Transcript: Lawyer Analytics Platform - Weekly Sync
+Date: March 6, 2026
+Attendees: Sarah (Product), Alex (Backend), Priya (Integrations), David (QA)
+
+Sarah: Alright team, let's kick off the weekly sync for the lawyer analytics platform. We have a few major milestones coming up. First, regarding the business model, we've had a lot of back and forth, but the executive team has officially decided to move forward with a tiered subscription model for the pricing.
+
+Priya: That makes sense. I'll need to finalize the pricing integration with Stripe to reflect those three tiers. I will get that done by next Monday.
+
+Sarah: Perfect. We also reached a consensus yesterday that we will prioritize the advanced data analysis features for the attorney dashboard in our Q2 roadmap, rather than pushing them to Q3.
+
+Alex: Sounds good. On the backend side, we've noticed some latency in the lawyer search endpoint. I am going to update the API optimization for the search module, and I should have that deployed to staging by Thursday.
+
+Sarah: Excellent. David, for the QA team, please ensure all user authentication flows are rigorously tested before the staging deployment. We can't afford any login bugs.
+
+David: Understood. The QA team will run the full auth regression suite. Also, as a general guideline for the dev team: always double-check your unit tests before merging to the main branch. We've had a few broken builds lately.
+
+Sarah: Great point. Finally, to manage server load, it was agreed that the initial beta launch will be strictly limited to 50 law firms. We will scale up from there. Let's get to work!
