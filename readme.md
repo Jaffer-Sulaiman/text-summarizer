@@ -1,4 +1,4 @@
-# 📄 Executive Text Analyzer
+# 📄 Text Analyzer
 
 An advanced, asynchronous generative AI application that processes long documents, transcripts, and meeting notes to extract structured insights. 
 
@@ -31,3 +31,4 @@ Built with **LangGraph** and **FastAPI** on the backend, and **Gradio** on the f
    ```bash
    git clone [https://github.com/yourusername/executive-text-analyzer.git](https://github.com/yourusername/executive-text-analyzer.git)
    cd executive-text-analyzer#
+
