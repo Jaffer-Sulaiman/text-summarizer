@@ -181,7 +181,7 @@ with gr.Blocks(title="AI Text Analyzer", theme=gr.themes.Soft()) as demo:
         fn=process_text,
         inputs=input_text,
         outputs=[output_title, output_summary, output_actions, output_decisions, timer_display, download_btn]
-    )
+    ) 
 
 if __name__ == "__main__":
     demo.queue().launch(server_port=7860)
