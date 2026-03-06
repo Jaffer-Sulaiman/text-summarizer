@@ -2,103 +2,71 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, START, END
-from schema import AgentState, ActionItems, KeyDecisions
+from schema import AgentState, ExtractionResult
 from dotenv import load_dotenv
-from langchain_core.output_parsers import StrOutputParser
 
-# Load environment variables from the .env file into os.environ
+# Load environment variables
 load_dotenv()
 
-# Initialize Gemini (1.5 Pro is ideal for long context)
+# Initialize Gemini 
 llm = ChatGoogleGenerativeAI(
     model="gemini-3.1-pro-preview", 
-    temperature=0.2, # Low temperature for more factual extraction
+    temperature=0.2, 
     max_tokens=2048
 )
 
-# --- Define the Nodes ---
-
-def summarize_node(state: AgentState):
+# --- Define the Single Master Node ---
+def master_extraction_node(state: AgentState):
     prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert executive assistant. Provide a concise, highly readable summary of the following text."),
+        ("system", """You are an expert AI reading assistant and document analyst. Your task is to analyze the provided text and extract a title, an executive summary, action items, and key decisions.
+
+        The input text may range from corporate meeting transcripts to general articles, blogs, or research papers. Use the following adaptable definitions:
+
+        1. ACTION ITEMS:
+        - Definition: Tasks, concrete next steps, actionable advice, recommendations, or guidelines presented in the text.
+        - Look for: Assigned duties with deadlines (e.g., "John will review the contract"), imperative commands, or practical tips for the reader (e.g., "Eat more vegetables," "Always double-check your work").
+
+        2. KEY DECISIONS (OR CONCLUSIONS):
+        - Definition: Finalized agreements, established facts, primary recommendations, or main takeaways from the text.
+        - Look for: Formal consensus (e.g., "The board approved the budget"), definitive statements, core arguments, or the primary conclusions reached by the author/speakers.
+
+        CRITICAL CONSTRAINTS:
+        - Grounding: Base your extraction STRICTLY on the provided text. Do not invent, infer, or hallucinate details.
+        - Empty States: If the text is purely narrative and contains absolutely no actionable advice, tasks, or meaningful conclusions, you MUST return an empty list [] for those fields.
+        - Insufficient Input: If the input text is too short or lacks meaningful context, state "Insufficient text provided for meaningful analysis." in the summary and return empty lists for actions and decisions.
+        """),
         ("user", "{text}")
     ])
     
-    # We remove StrOutputParser() and just use the base chain
-    chain = prompt | llm 
-    response = chain.invoke({"text": state["original_text"]})
-    
-    content = response.content
-    
-    # Bulletproof extraction: 
-    # If Gemini returns the raw list/dict payload, we drill down to grab just the 'text'
-    if isinstance(content, list) and len(content) > 0 and isinstance(content[0], dict):
-        summary_text = content[0].get("text", "")
-    else:
-        # Fallback if it actually does return a string
-        summary_text = str(content) 
-        
-    return {"summary": summary_text}
-
-def extract_actions_node(state: AgentState):
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "Extract all action items, task assignments, and next steps from the text. Return them as a structured list."),
-        ("user", "{text}")
-    ])
-    # Force Gemini to output JSON matching our Pydantic schema
-    structured_llm = llm.with_structured_output(ActionItems)
+    # Force Gemini to output the massive JSON structure
+    structured_llm = llm.with_structured_output(ExtractionResult)
     chain = prompt | structured_llm
-    response = chain.invoke({"text": state["original_text"]})
-    return {"action_items": response.items if response else []}
-
-def extract_decisions_node(state: AgentState):
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "Extract all key decisions, finalized agreements, or policy approvals from the text. Return them as a structured list."),
-        ("user", "{text}")
-    ])
-    structured_llm = llm.with_structured_output(KeyDecisions)
-    chain = prompt | structured_llm
-    response = chain.invoke({"text": state["original_text"]})
-    return {"key_decisions": response.decisions if response else []}
-
-def generate_title_node(state: AgentState):
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are an expert editor. Generate a short, professional title (maximum 6 words) for the following text. Do not use quotes. Just output the title."),
-        ("user", "{text}")
-    ])
     
-    chain = prompt | llm 
+    # Execute the single API call
     response = chain.invoke({"text": state["original_text"]})
     
-    content = response.content
-    # Using our bulletproof extraction just to be safe
-    if isinstance(content, list) and len(content) > 0 and isinstance(content[0], dict):
-        title_text = content[0].get("text", "").strip()
+    # Map the resulting Pydantic object back to our AgentState dictionary
+    if response:
+        return {
+            "title": response.title,
+            "summary": response.summary,
+            "action_items": response.action_items,
+            "key_decisions": response.key_decisions
+        }
     else:
-        title_text = str(content).strip()
-        
-    return {"title": title_text}
-
+        # Fallback in case of a highly unusual parsing failure
+        return {"title": "Error", "summary": "Failed to extract data.", "action_items": [], "key_decisions": []}
 
 # --- Build the Graph ---
 def build_graph():
     builder = StateGraph(AgentState)
 
-    builder.add_node("title_generator", generate_title_node) # <-- Add this
-    builder.add_node("summarizer", summarize_node)
-    builder.add_node("action_extractor", extract_actions_node)
-    builder.add_node("decision_extractor", extract_decisions_node)
+    # Add our single node
+    builder.add_node("extractor", master_extraction_node)
 
-    # Wire all 4 to start at the same time
-    builder.add_edge(START, "title_generator") # <-- Add this
-    builder.add_edge(START, "summarizer")
-    builder.add_edge(START, "action_extractor")
-    builder.add_edge(START, "decision_extractor")
-
-    builder.add_edge("title_generator", END) # <-- Add this
-    builder.add_edge("summarizer", END)
-    builder.add_edge("action_extractor", END)
-    builder.add_edge("decision_extractor", END)
+    # Wire the linear graph
+    builder.add_edge(START, "extractor")
+    builder.add_edge("extractor", END)
 
     return builder.compile()
 
