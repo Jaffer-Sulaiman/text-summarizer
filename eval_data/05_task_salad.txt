@@ -1,0 +1,7 @@
+Meeting Date: March 2, 2026
+Attendees: Data Team
+Sarah: Alright, rapid fire for the data pipeline project. We have a lot to do before the Friday demo.
+Alex: I will write the data scraping scripts for the new legal case dataset.
+David: I'll handle the LLM extraction prompts to pull the entities.
+Priya: I will build the post-processing and normalization module to clean up the LLM outputs.
+Sarah: Perfect. And I will coordinate with the frontend team to make sure the UI is ready to receive the normalized data. Everyone has their assignments, let's execute.

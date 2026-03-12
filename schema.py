@@ -4,14 +4,13 @@ from pydantic import BaseModel, Field
 # 1. The Master Pydantic Model (Hardened)
 class ExtractionResult(BaseModel):
     title: str = Field(
-        default="Untitled Document",
-        description="A short, professional title. If the text is too short or lacks context, return 'Untitled Document'."
+        default="Title not found", # <-- Updated
+        description="A short, professional title. If the text is too short or lacks context, return 'Title not found'."
     )
     summary: str = Field(
-        default="Insufficient text provided.",
-        description="An executive summary. If the text is too short to summarize, return 'Insufficient text provided for a summary.'"
+        default="Summary not in context", # <-- Updated
+        description="An executive summary. If the text is too short to summarize, return 'Summary not in context.'"
     )
-    # Using default_factory=list prevents mutable default bugs in Python
     action_items: List[str] = Field(
         default_factory=list, 
         description="A list of clearly defined action items. If absolutely no action items are found, return an empty list []."

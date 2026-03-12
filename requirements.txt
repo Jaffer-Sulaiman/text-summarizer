@@ -5,3 +5,4 @@ langchain-google-genai
 langgraph 
 pydantic
 fpdf2
+pandas

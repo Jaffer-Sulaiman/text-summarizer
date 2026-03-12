@@ -117,8 +117,8 @@ def process_text(text):
             actions_list = data.get("action_items", [])
             decisions_list = data.get("key_decisions", [])
             
-            formatted_actions = format_list_to_markdown(actions_list, "No action items found.")
-            formatted_decisions = format_list_to_markdown(decisions_list, "No key decisions found.")
+            formatted_actions = format_list_to_markdown(actions_list, "Action items not found")
+            formatted_decisions = format_list_to_markdown(decisions_list, "Key decisions not found") 
             
             final_time = int(time.time() - start_time)
             success_msg = f"**✅ Completed in {final_time}s**"

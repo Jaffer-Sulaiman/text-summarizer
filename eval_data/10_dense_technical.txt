@@ -1,0 +1,2 @@
+Architecture Review Sync
+The current implementation utilizes a sequential LangChain execution path, which is bottlenecking the Uvicorn workers during high-concurrency requests. We have reached a consensus to refactor the orchestration layer to utilize LangGraph, allowing for asynchronous, parallel node execution for the extraction tasks. Alex is assigned to rewrite the state graph definitions and deploy the optimized FastAPI container to the staging environment by EOD Thursday.

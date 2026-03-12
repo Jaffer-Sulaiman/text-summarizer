@@ -1,0 +1,5 @@
+Meeting Date: Jan 15, 2026
+Attendees: Team Lead, Backend Dev
+Lead: We need to finalize the hosting for the new text summarizer demo. I was thinking we just throw it on a basic EC2 instance.
+Dev: EC2 is fine, but since we are using FastAPI and Uvicorn, deploying it on a managed service like Google Cloud Run might be way less DevOps overhead for us.
+Lead: Actually, that's a fair point. Let's pivot. It is officially decided that we will deploy the summarizer demo using Google Cloud Run. Ignore the EC2 plan.

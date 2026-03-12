@@ -1,0 +1,1 @@
+so i was looking at the system for users to report and correct data inaccuracies and honestly its a mess right now we agreed that the reporting flow is the highest priority for Q2 but like someone really needs to go in and audit the database logs to see where the dropoff is happening i think david said he would do the audit on monday anyway lets catch up later

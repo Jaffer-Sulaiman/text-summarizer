@@ -1,0 +1,7 @@
+Meeting Date: Oct 12, 2025
+Attendees: Sarah, David, Priya
+Sarah: Let's review the lawyer analytics platform progress. We need to lock in the database architecture today. 
+David: I've looked at the options, and I strongly recommend we stick with PostgreSQL for the primary relational data. 
+Sarah: I agree. It's decided then, we will use PostgreSQL as the primary database.
+Priya: Sounds good. I will configure the initial PostgreSQL schemas by Thursday so the backend team can start wiring up the endpoints.
+David: Awesome. I'll also start drafting the API documentation.

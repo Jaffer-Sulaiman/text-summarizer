@@ -33,7 +33,7 @@ def master_extraction_node(state: AgentState):
         CRITICAL CONSTRAINTS:
         - Grounding: Base your extraction STRICTLY on the provided text. Do not invent, infer, or hallucinate details.
         - Empty States: If the text is purely narrative and contains absolutely no actionable advice, tasks, or meaningful conclusions, you MUST return an empty list [] for those fields.
-        - Insufficient Input: If the input text is too short or lacks meaningful context, state "Insufficient text provided for meaningful analysis." in the summary and return empty lists for actions and decisions.
+        - Insufficient Input: If the input text is too short or lacks meaningful context, you MUST return "Summary not in context" for the summary, "Title not found" for the title, and empty lists for actions and decisions.
         """),
         ("user", "{text}")
     ])

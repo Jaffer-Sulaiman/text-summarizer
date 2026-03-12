@@ -1,0 +1,6 @@
+Meeting Date: Nov 28, 2025
+Attendees: Alex, Priya
+Alex: The lawyer name clustering algorithm is acting up. We are getting too many false positives when dealing with common surnames.
+Priya: Yeah, I saw that. What if we tried a deep learning approach? Like using a transformer model to capture the contextual embeddings of the law firm names alongside the lawyer names?
+Alex: That could be cool. Or maybe we just tweak the existing fuzzy matching thresholds first to see if that reduces the noise.
+Priya: We could also look into DBSCAN instead of K-Means for the clustering logic. Let's keep thinking about it and circle back next week.
