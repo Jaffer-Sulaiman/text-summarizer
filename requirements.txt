@@ -6,3 +6,7 @@ langgraph
 pydantic
 fpdf2
 pandas
+langchain-openai 
+langchain-community 
+duckduckgo-search 
+httpx 

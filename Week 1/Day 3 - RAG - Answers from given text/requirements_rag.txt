@@ -1,0 +1,7 @@
+langchain 
+langchain-google-genai 
+langgraph 
+chromadb 
+gradio 
+pypdf 
+pydantic

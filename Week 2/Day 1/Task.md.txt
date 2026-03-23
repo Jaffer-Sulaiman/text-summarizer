@@ -1,0 +1,13 @@
+Agent Architecture
+ 
+**Learning**
+ 
+* Agent loop
+* Tool usage
+* Reasoning steps
+ 
+**Task**
+Design architecture for: AI support assistant.
+ 
+Deliverable:
+Architecture diagram.

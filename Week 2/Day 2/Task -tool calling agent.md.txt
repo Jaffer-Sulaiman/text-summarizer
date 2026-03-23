@@ -1,0 +1,14 @@
+Tool Calling Agent
+ 
+**Task**
+Create an agent that can:
+ 
+1. Accept user query
+2. Call external API
+3. Return processed answer
+ 
+Example tools:
+ 
+* weather API
+* currency API
+* search API
