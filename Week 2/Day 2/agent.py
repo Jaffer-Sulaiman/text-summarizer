@@ -1,6 +1,7 @@
 from typing import Annotated, TypedDict
 from langchain_core.messages import BaseMessage, SystemMessage
-from langchain_openai import ChatOpenAI
+# 1. Changed import from OpenAI to Google GenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
@@ -10,15 +11,14 @@ from langgraph.checkpoint.memory import MemorySaver
 from tools import tools 
 
 # --- 1. Define the State ---
-# This dictionary represents the data passed between nodes. 
-# 'add_messages' ensures new messages are appended to the list, not overwritten.
 class AgentState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
 # --- 2. Setup the LLM ---
-# We bind the tools to the LLM so it knows what JSON schemas it can output.
-# (Make sure you have OPENAI_API_KEY set in your environment variables)
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0) # Temperature 0 for predictable tool calling
+# 2. Replaced ChatOpenAI with ChatGoogleGenerativeAI.
+# gemini-1.5-flash is excellent and fast for utility tool calling. 
+# (Make sure you have GOOGLE_API_KEY set in your environment variables)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0) 
 llm_with_tools = llm.bind_tools(tools)
 
 # --- 3. The Guardrail System Prompt ---
@@ -40,37 +40,24 @@ def agent_node(state: AgentState):
     """The main reasoning engine."""
     messages = state["messages"]
     
-    # Inject the system prompt dynamically if it's the start of a new conversation
     if not messages or not isinstance(messages[0], SystemMessage):
         messages = [SystemMessage(content=SYSTEM_PROMPT)] + messages
         
-    # The LLM reads the history and decides to either respond with text OR emit a tool call
     response = llm_with_tools.invoke(messages)
     return {"messages": [response]}
 
-# LangGraph's prebuilt ToolNode automatically executes our Python functions based on LLM output
 tool_node = ToolNode(tools)
 
 # --- 5. Build the Graph ---
 workflow = StateGraph(AgentState)
 
-# Add our two nodes
 workflow.add_node("agent", agent_node)
 workflow.add_node("tools", tool_node)
 
-# Set the entry point
 workflow.set_entry_point("agent")
-
-# Define conditional routing
-# `tools_condition` checks the agent's output:
-# - If it contains tool calls -> routes to the "tools" node.
-# - If it's just text -> routes to END.
 workflow.add_conditional_edges("agent", tools_condition)
-
-# Once a tool finishes executing, it MUST go back to the agent to synthesize the final answer
 workflow.add_edge("tools", "agent")
 
 # --- 6. Compile with Memory ---
-# MemorySaver stores the state in RAM. This handles our persistence for the demo.
 memory = MemorySaver()
 app = workflow.compile(checkpointer=memory)
