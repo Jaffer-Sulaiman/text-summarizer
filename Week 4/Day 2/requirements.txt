@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+gradio
+faiss-cpu
+sentence-transformers
+numpy
+langchain-text-splitters
+pypdf
+python-multipart

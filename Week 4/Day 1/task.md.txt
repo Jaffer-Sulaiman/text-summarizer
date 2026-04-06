@@ -1,0 +1,11 @@
+today topic 
+Embeddings & Semantic Search
+ 
+**Learning**
+ 
+* embeddings concept
+* semantic similarity
+
+
+Task
+Create embeddings for 10 documents.

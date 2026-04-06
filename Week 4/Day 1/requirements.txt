@@ -1,0 +1,8 @@
+fastapi 
+uvicorn 
+gradio 
+chromadb 
+sentence-transformers 
+pypdf 
+langchain-text-splitters 
+python-multipart

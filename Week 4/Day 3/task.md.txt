@@ -1,0 +1,12 @@
+### Day 13 – Retrieval Pipeline
+Task
+ 
+Build system:
+User query
+ 
+→ search vector DB
+ 
+→ retrieve top results.
+Evaluation:
+ 
+Check retrieval relevance.

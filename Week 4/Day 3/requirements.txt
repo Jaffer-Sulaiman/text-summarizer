@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+gradio
+langchain-text-splitters
+faiss-cpu
+sentence-transformers
+numpy
+requests
+pypdf
+python-multipart

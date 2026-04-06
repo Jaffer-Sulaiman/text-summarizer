@@ -1,0 +1,12 @@
+### Day 12 – Vector Database Setup
+**Task**
+ 
+Setup vector search using:
+* FAISS
+ 
+  or
+ 
+* Pinecone
+
+
+Go through the concepts of Vectorless RAG
