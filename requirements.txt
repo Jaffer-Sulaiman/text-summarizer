@@ -10,3 +10,8 @@ langchain-openai
 langchain-community 
 duckduckgo-search 
 httpx 
+chromadb
+python-multipart
+sentence-transformers
+pypdf
+langchain-huggingface
