@@ -1,0 +1,132 @@
+SwiftShip Logistics — Shipping Policy
+Version 2.1 | Effective Date: January 1, 2026
+
+==============================================================
+SECTION 1: SHIPPING ZONES
+==============================================================
+
+SwiftShip operates across 6 domestic shipping zones determined by the
+distance between the origin warehouse and the destination address.
+
+Zone 1: 0–50 miles from origin
+Zone 2: 51–150 miles from origin
+Zone 3: 151–300 miles from origin
+Zone 4: 301–600 miles from origin
+Zone 5: 601–1000 miles from origin
+Zone 6: 1001+ miles from origin
+
+Zone is calculated automatically at checkout based on origin ZIP and
+destination ZIP using our proprietary Zone Mapping Engine (ZME v4).
+
+==============================================================
+SECTION 2: STANDARD DELIVERY TIMELINES (SLAs)
+==============================================================
+
+Service Level       | Zone 1-2  | Zone 3-4  | Zone 5-6
+--------------------|-----------|-----------|----------
+Economy Ground      | 5-7 days  | 7-10 days | 10-14 days
+Standard Ground     | 3-5 days  | 5-7 days  | 7-10 days
+Express (2-Day Air) | 2 days    | 2 days    | 2 days
+Overnight Air       | Next day  | Next day  | Next day
+Same Day (local)    | Same day  | N/A       | N/A
+
+All timelines are business days (Monday–Friday, excluding holidays).
+SwiftShip is not liable for delays caused by force majeure events,
+severe weather, or customs holds on international shipments.
+
+==============================================================
+SECTION 3: RATE CARD (Domestic, USD)
+==============================================================
+
+Rates are per-package, based on the greater of actual weight or
+dimensional weight (DIM weight). DIM factor: 166 (inches) / 5000 (cm³).
+
+Weight Tier             | Zone 1-2 | Zone 3-4  | Zone 5-6
+------------------------|----------|-----------|-----------
+Up to 1 lb              | $7.50    | $9.25     | $12.00
+1.01–5 lbs              | $9.75    | $13.50    | $17.80
+5.01–10 lbs             | $14.00   | $19.50    | $26.00
+10.01–20 lbs            | $21.50   | $30.00    | $41.00
+20.01–50 lbs            | $38.00   | $54.00    | $72.00
+50+ lbs                 | Contact Sales for freight rates
+
+Fuel Surcharge: 8.5% added to all shipments (updated quarterly).
+Residential Delivery Fee: $4.00 per package for residential addresses.
+Signature Required Fee: $3.50 per package.
+Saturday/Sunday Delivery: +$18.00 surcharge.
+
+==============================================================
+SECTION 4: PROHIBITED ITEMS
+==============================================================
+
+The following items are strictly prohibited from SwiftShip services:
+
+1. Hazardous Materials:
+   - Flammable gases, liquids, or solids
+   - Explosive materials and pyrotechnics
+   - Radioactive materials
+   - Toxic or infectious substances
+   - Corrosive materials (acids, batteries leaking)
+
+2. Controlled Substances:
+   - Illegal narcotics and controlled drugs
+   - Prescription medications without valid documentation
+   - Tobacco products (certain state restrictions apply)
+
+3. Restricted Items:
+   - Firearms, ammunition, and weapons
+   - Perishable foods without refrigerated service agreement
+   - Live animals (except via SwiftShip Pet Program with prior approval)
+   - Alcohol (without SwiftShip Alcohol Carrier License, by volume limits)
+   - Currency, gemstones, and precious metals over $1,000 value without insurance
+
+Shipments containing prohibited items will be rejected, seized, and
+the shipper may be held liable for any resulting costs or legal action.
+
+==============================================================
+SECTION 5: INSURANCE AND DECLARED VALUE
+==============================================================
+
+All shipments include $100 base coverage at no additional cost.
+
+Additional Coverage:
+- $0.85 per $100 of declared value above $100 (up to $5,000)
+- Coverage above $5,000 requires SwiftShip Extended Insurance Plan
+
+Claims must be filed within 60 days of the estimated delivery date.
+Evidence required: original invoice, photos of damage, packaging materials.
+
+==============================================================
+SECTION 6: PACKAGING REQUIREMENTS
+==============================================================
+
+Shippers are responsible for proper packaging. SwiftShip recommends:
+
+- Use corrugated cardboard boxes rated for the item weight + 30% buffer
+- Fill void space with packing peanuts, bubble wrap, or foam inserts
+- Items should not shift more than 1 inch in any direction inside the box
+- Double-wall boxes required for items over 20 lbs
+- Fragile items must be labeled "Fragile — Handle with Care"
+- Maximum package dimensions: 108" in combined length + girth
+
+Improperly packaged items that are damaged in transit may have claims denied.
+
+==============================================================
+SECTION 7: ADDRESS CORRECTION AND RETURN POLICY
+==============================================================
+
+Address correction fee: $18.00 per package if correction is made after pickup.
+
+Undeliverable packages will be returned to origin after 3 delivery attempts.
+Return shipping fee: Standard Ground rate for the return zone.
+
+Refused deliveries are treated as returns at the shipper's cost.
+
+==============================================================
+SECTION 8: CONTACT AND ESCALATION
+==============================================================
+
+Customer Support: support@swiftship.com
+Phone: 1-800-SWIFT-01 (1-800-794-3801)
+Live Chat: Available weekdays 8AM–8PM EST at swiftship.com/chat
+Escalations: escalations@swiftship.com (response within 4 business hours)
