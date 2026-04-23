@@ -222,27 +222,7 @@ flowchart TD
     LOG --> API & GRAPH & VS & ING
 ```
 
----
 
-## 🆚 What's New vs Week 5
-
-| Feature | Week 5 (Day 1 & 2) | Week 6 Day 1 |
-|---|---|---|
-| **Domain** | Generic Q&A | Logistics customer support |
-| **Session memory** | Client-side history array | Server-side `session_id` store with TTL |
-| **Intent guard** | ❌ | ✅ (logistics / greeting / off_topic) |
-| **Query reform** | ❌ | ✅ (standalone rephrasing using history) |
-| **Escalation** | ❌ | ✅ (confidence threshold + escalation node) |
-| **File formats** | PDF + TXT | PDF + TXT + DOCX |
-| **Metadata** | source + hash | + category + doc_type + upload_ts + page_count |
-| **Category filter** | ❌ | ✅ (retrieval narrowed by topic tag) |
-| **Auth** | ❌ | ✅ (X-API-Key, optional) |
-| **Rate limiting** | ❌ | ✅ (60 req/min/IP sliding window) |
-| **Structured logging** | `print()` | JSON structured logger with TimingContext |
-| **API endpoints** | 2 (`/upload`, `/chat`) | 9 endpoints incl. `/health`, `/metrics`, `/kb/*` |
-| **Error schema** | Raw HTTPException | Standardized `ErrorResponse` with error codes |
-| **Graph nodes** | 7 nodes | 10 nodes (+ intent, rephrase, escalate) |
-| **UI tabs** | 2 tabs | 3 tabs + confidence badge + sources panel |
 
 ---
 
