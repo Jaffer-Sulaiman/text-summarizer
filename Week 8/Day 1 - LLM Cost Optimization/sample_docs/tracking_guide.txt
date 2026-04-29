@@ -1,0 +1,169 @@
+SwiftShip Logistics — Shipment Tracking Guide
+Version 3.0 | Updated: March 2026
+
+==============================================================
+SECTION 1: HOW TO TRACK YOUR SHIPMENT
+==============================================================
+
+There are four ways to track a SwiftShip shipment:
+
+1. Online Portal (Recommended):
+   Visit swiftship.com/track and enter your 18-digit tracking number.
+   Updates are refreshed every 15 minutes.
+
+2. Mobile App:
+   Download SwiftShip Mobile (iOS / Android). Push notifications are
+   sent at every major checkpoint automatically.
+
+3. SMS Alerts:
+   Text TRACK <tracking_number> to 79438 (SWIFT8).
+   Carrier reply within 2 minutes with latest status.
+
+4. API Integration:
+   Enterprise customers can integrate tracking via the SwiftShip REST API.
+   Endpoint: GET https://api.swiftship.com/v2/track/{tracking_number}
+   Authentication: Bearer token (request at developer.swiftship.com).
+
+==============================================================
+SECTION 2: TRACKING STATUS CODES
+==============================================================
+
+Code        | Status Description
+------------|-------------------------------------------------------------
+ACCEPTED    | Package received at SwiftShip facility — processing begun
+IN_TRANSIT  | Package is moving between facilities or out for delivery
+OUT_FOR_DEL | Package is on the delivery vehicle for today's delivery
+DELIVERED   | Package successfully delivered (timestamp and location logged)
+ATTEMPTED   | Delivery attempted — recipient not available (see notes)
+HELD        | Package held at facility (customs, address issue, or request)
+RETURNED    | Package is being returned to the shipper
+EXCEPTION   | Unexpected event — weather, damage, mis-sort (see notes)
+LOST        | Package cannot be located — claim process initiated
+CANCELLED   | Shipment cancelled before pickup
+
+==============================================================
+SECTION 3: UNDERSTANDING DELIVERY ATTEMPTS
+==============================================================
+
+SwiftShip makes up to 3 delivery attempts for packages requiring signature
+or packages too large for the mailbox.
+
+Attempt 1: Standard delivery window (8AM–8PM recipient local time).
+           A door tag is left with the next attempt date.
+
+Attempt 2: Rescheduled for next business day.
+           A second door tag is left with a facility pickup option.
+
+Attempt 3: Final attempt. If unsuccessful, an "ATTEMPTED - FINAL" notice
+           is left and the package is held at the nearest SwiftShip facility
+           for 7 calendar days before being returned to shipper.
+
+Recipients can reschedule delivery or redirect to a SwiftShip Access Point
+via swiftship.com/manage or by calling 1-800-SWIFT-01.
+
+==============================================================
+SECTION 4: DELAYS AND EXCEPTIONS
+==============================================================
+
+Common reasons for delays (EXCEPTION status):
+
+1. Weather Events:
+   Natural disasters, severe storms, or state of emergency declarations
+   may pause delivery operations. SwiftShip issues Service Alerts
+   on swiftship.com/alerts.
+
+2. Address Issues:
+   Incomplete, unverified, or incorrect addresses trigger a HELD status
+   and an automatic email to the shipper requesting correction.
+   Address corrections cost $18.00 per package.
+
+3. Customs Delays (International):
+   International shipments may be held by customs authorities.
+   SwiftShip has no control over customs processing times.
+   Estimated customs processing: 1–5 business days for most countries.
+   Customs-required documentation must be complete and accurate.
+
+4. Capacity Constraints:
+   During peak periods (November–December), some services may experience
+   1–2 business day additional delays. SwiftShip proactively communicates
+   via email and SMS when peak surcharges or delays are expected.
+
+5. Damaged in Transit:
+   If a package is damaged during shipping, it is flagged with EXCEPTION
+   and the recipient/shipper is notified immediately.
+   A damage claim can be filed at swiftship.com/claims.
+
+==============================================================
+SECTION 5: LOST SHIPMENT PROCEDURE
+==============================================================
+
+A shipment is considered "officially lost" when:
+- It has not shown a scan update for 5 business days (domestic)
+- It has not shown a scan update for 15 business days (international)
+
+Steps to file a lost shipment claim:
+
+Step 1: Verify status at swiftship.com/track or call 1-800-SWIFT-01.
+
+Step 2: File a trace request at swiftship.com/trace.
+        SwiftShip conducts an internal trace for up to 8 business days.
+
+Step 3: If not located, file a formal claim at swiftship.com/claims.
+        Required: tracking number, shipper details, recipient details,
+        item description, purchase invoice, declared value.
+
+Step 4: Claims are reviewed within 5–10 business days.
+        If approved, payment is issued within 15 business days.
+
+Note: Claims for lost shipments must be filed within 60 days of
+the original estimated delivery date.
+
+==============================================================
+SECTION 6: PROOF OF DELIVERY (POD)
+==============================================================
+
+Proof of Delivery is available for all delivered shipments:
+
+- Digital POD: Available within 2 hours of delivery at swiftship.com/track.
+  Includes: delivery timestamp, GPS coordinates, recipient signature
+  (if required), and driver photo of placement.
+
+- Printed POD: Available by request — call 1-800-SWIFT-01 or email
+  support@swiftship.com. Standard processing: 1–2 business days.
+
+- API POD: Enterprise customers can retrieve POD data via:
+  GET https://api.swiftship.com/v2/pod/{tracking_number}
+
+==============================================================
+SECTION 7: SWIFTSHIP ACCESS POINTS
+==============================================================
+
+SwiftShip Access Points are partner retail locations (pharmacies, grocery
+stores, service stations) that can:
+- Accept package drop-offs for SwiftShip shipments
+- Hold packages for recipient pickup (up to 7 days)
+- Accept return packages
+
+Find your nearest Access Point: swiftship.com/access-points
+
+Packages held at Access Points beyond 7 days are returned to the shipper.
+Identification is required to pick up packages at Access Points.
+
+==============================================================
+SECTION 8: INTERNATIONAL TRACKING
+==============================================================
+
+For international shipments, tracking updates may be less frequent once
+the package enters the destination country's postal or courier network.
+
+SwiftShip partners with 37 international carriers for last-mile delivery.
+Once in-country, tracking may show on the partner carrier's site.
+
+Customs documents required for most international shipments:
+- Commercial Invoice (3 copies)
+- Packing List
+- Certificate of Origin (if required by destination country)
+- Harmonized System (HS) Tariff Code for all items
+
+SwiftShip Customer Support for International:
+international@swiftship.com | Response time: within 1 business day.
